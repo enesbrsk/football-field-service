@@ -1,0 +1,4 @@
+com\example\footballfield\service\AreaService.class
+com\example\footballfield\controller\AreaController.class
+com\example\footballfield\FootballFieldApplication.class
+com\example\footballfield\repository\AreaRepository.class
