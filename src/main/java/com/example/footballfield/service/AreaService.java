@@ -1,6 +1,7 @@
 package com.example.footballfield.service;
 
 import com.example.footballfield.entity.Area;
+import com.example.footballfield.exception.AreaNotFoundException;
 import com.example.footballfield.model.AreaRequest;
 import com.example.footballfield.model.AreaResponse;
 import com.example.footballfield.repository.AreaRepository;
@@ -21,7 +22,6 @@ public class AreaService {
         this.areaRepository = areaRepository;
     }
 
-
     @Transactional(propagation = Propagation.REQUIRED)
     public Boolean saveArea(AreaRequest areaRequest)
     {
@@ -35,6 +35,12 @@ public class AreaService {
                 .map(AreaResponse::convertToAreaResponse)
                 .collect(Collectors.toList());
 
+    }
+
+    public AreaResponse getById(String id){
+        return  AreaResponse.convertToAreaResponse(areaRepository.findById(id)
+                .orElseThrow(() -> new AreaNotFoundException(String.format("Area could not find by id: %s ",id)))
+        );
     }
 
 }
