@@ -1,8 +1,7 @@
 package com.example.footballfield.controller;
 
-import com.example.footballfield.entity.Area;
-import com.example.footballfield.model.AreaRequest;
-import com.example.footballfield.model.AreaResponse;
+import com.example.footballfield.model.request.AreaRequest;
+import com.example.footballfield.model.response.AreaResponse;
 import com.example.footballfield.service.AreaService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +23,13 @@ public class AreaController {
         return ResponseEntity.ok(areaService.getAllArea());
     }
 
+    @GetMapping( "{id}")
+    public ResponseEntity<AreaResponse> getById(@PathVariable String id){
+        return ResponseEntity.ok(areaService.getById(id));
+    }
+
     @PostMapping
-    public ResponseEntity<Boolean> saveArea(@RequestBody AreaRequest areaRequest){
+    public ResponseEntity<AreaResponse> saveArea(@RequestBody AreaRequest areaRequest){
         return ResponseEntity.ok(areaService.saveArea(areaRequest));
     }
 

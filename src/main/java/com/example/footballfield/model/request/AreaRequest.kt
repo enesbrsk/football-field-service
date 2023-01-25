@@ -1,6 +1,7 @@
-package com.example.footballfield.model
+package com.example.footballfield.model.request
 
 import com.example.footballfield.entity.Area
+import com.example.footballfield.model.AddressDto
 import java.time.LocalDateTime
 
 data class AreaRequest @JvmOverloads constructor(
@@ -14,7 +15,7 @@ data class AreaRequest @JvmOverloads constructor(
     companion object{
 
         @JvmStatic
-        fun convertToArea(from:AreaRequest):Area{
+        fun convertToArea(from: AreaRequest):Area{
             return Area(
                 null,
                 from.areaName,

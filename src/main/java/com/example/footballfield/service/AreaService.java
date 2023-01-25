@@ -1,15 +1,15 @@
 package com.example.footballfield.service;
 
 import com.example.footballfield.entity.Area;
-import com.example.footballfield.exception.AreaNotFoundException;
-import com.example.footballfield.model.AreaRequest;
-import com.example.footballfield.model.AreaResponse;
+import com.example.footballfield.enums.ErrorCode;
+import com.example.footballfield.exception.GenericException;
+import com.example.footballfield.model.request.AreaRequest;
+import com.example.footballfield.model.response.AreaResponse;
 import com.example.footballfield.repository.AreaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,10 +23,10 @@ public class AreaService {
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public Boolean saveArea(AreaRequest areaRequest)
+    public AreaResponse saveArea(AreaRequest areaRequest)
     {
-        areaRepository.save(AreaRequest.convertToArea(areaRequest));
-        return true;
+        final Area fromDb = areaRepository.save(AreaRequest.convertToArea(areaRequest));
+        return AreaResponse.convertToAreaResponse(fromDb);
     }
 
     public List<AreaResponse> getAllArea() {
@@ -39,8 +39,9 @@ public class AreaService {
 
     public AreaResponse getById(String id){
         return  AreaResponse.convertToAreaResponse(areaRepository.findById(id)
-                .orElseThrow(() -> new AreaNotFoundException(String.format("Area could not find by id: %s ",id)))
+                .orElseThrow(() -> new GenericException("Area could not find by id: " + id,ErrorCode.AREA_NOT_FOUND))
         );
     }
+
 
 }
