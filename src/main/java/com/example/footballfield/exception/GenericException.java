@@ -20,6 +20,11 @@ public class GenericException  extends RuntimeException{
         this.errorCode = errorCode;
     }
 
+    public GenericException(String errorMessage,HttpStatus httpStatus){
+        this.errorMessage = errorMessage;
+        this.httpStatus = httpStatus;
+    }
+
     public HttpStatus getHttpStatus() {
         return httpStatus;
     }
