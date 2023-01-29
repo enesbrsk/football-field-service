@@ -53,7 +53,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/api/public", "/h2-console/**", "/api/auth/login", "/api/auth/signup", "/**").permitAll();
                     auth.requestMatchers("/api/admin").hasAuthority("ADMIN");
-                    auth.requestMatchers("/api/user").hasAnyAuthority("ADMIN", "USER");
+                    auth.requestMatchers("/api/v1/area").hasAnyAuthority("ADMIN", "USER");
                     auth.anyRequest().authenticated();
                 })
                 .formLogin().disable()

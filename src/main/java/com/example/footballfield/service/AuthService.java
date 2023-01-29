@@ -56,7 +56,7 @@ public class AuthService {
         }
         var user = new
                 com.example.footballfield.entity.User(null, LocalDateTime.now(),LocalDateTime.now(),
-                signUpRequest.getUsername(), encoder.encode(signUpRequest.getPassword()),Role.USER);
+                signUpRequest.getUsername(), encoder.encode(signUpRequest.getPassword()),signUpRequest.getRole());
 
         User fromDb = userService.create(user);
         return UserDto.converToUserDto(fromDb);

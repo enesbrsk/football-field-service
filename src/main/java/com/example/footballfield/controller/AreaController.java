@@ -2,6 +2,7 @@ package com.example.footballfield.controller;
 
 import com.example.footballfield.model.request.AreaRequest;
 import com.example.footballfield.model.response.AreaResponse;
+import com.example.footballfield.model.response.ResponseMessage;
 import com.example.footballfield.service.AreaService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +32,11 @@ public class AreaController {
     @PostMapping
     public ResponseEntity<AreaResponse> saveArea(@RequestBody AreaRequest areaRequest){
         return ResponseEntity.ok(areaService.saveArea(areaRequest));
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<ResponseMessage> deleteById(@PathVariable String id){
+        return ResponseEntity.ok(areaService.deleteById(id));
     }
 
 }
