@@ -7,6 +7,7 @@ import com.example.footballfield.model.request.AreaRequest;
 import com.example.footballfield.model.response.AreaResponse;
 import com.example.footballfield.model.response.ResponseMessage;
 import com.example.footballfield.repository.AreaRepository;
+import com.example.footballfield.repository.SearchSpecification;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
@@ -14,22 +15,27 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
 public class AreaService {
 
     private final AreaRepository areaRepository;
+    private final UserService userService;
 
-    public AreaService(AreaRepository areaRepository) {
+    public AreaService(AreaRepository areaRepository, UserService userService) {
         this.areaRepository = areaRepository;
+        this.userService = userService;
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
     @PreAuthorize("hasAuthority('ADMIN')")
     public AreaResponse saveArea(AreaRequest areaRequest)
     {
+
         final Area fromDb = areaRepository.save(AreaRequest.convertToArea(areaRequest));
+        fromDb.setUserId(Objects.requireNonNull(userService.findUserInContext().getId()));
         return AreaResponse.convertToAreaResponse(fromDb);
     }
 

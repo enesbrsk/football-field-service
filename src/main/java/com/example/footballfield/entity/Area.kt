@@ -18,7 +18,8 @@ data class Area @JvmOverloads constructor(
 
     @OneToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "address_id", referencedColumnName = "id")
-    var address: Address
+    var address: Address,
+    var userId:String
 
 ){
 

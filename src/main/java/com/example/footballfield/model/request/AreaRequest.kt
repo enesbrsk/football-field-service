@@ -2,6 +2,7 @@ package com.example.footballfield.model.request
 
 import com.example.footballfield.entity.Area
 import com.example.footballfield.model.AddressDto
+import com.example.footballfield.service.UserService
 import java.time.LocalDateTime
 
 data class AreaRequest @JvmOverloads constructor(
@@ -22,8 +23,9 @@ data class AreaRequest @JvmOverloads constructor(
                 from.averangePlayer,
                 from.averangeAudience,
                 LocalDateTime.now(),
-                AddressDto.convertToAddress(from.addressDto)
-            )
+                AddressDto.convertToAddress(from.addressDto),
+                ""
+                )
         }
 
     }
