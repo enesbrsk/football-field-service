@@ -10,7 +10,7 @@ data class Area @JvmOverloads constructor(
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    val id: String? = "",
+    var id: String? = "",
     val areaName:String,
     val averangePlayer:Int,
     val averangeAudience:Int,

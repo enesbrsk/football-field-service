@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\main",
+    "\\src\\main\\java",
+    "\\src\\main\\java\\com",
+    "\\src\\main\\java\\com\\example",
+    "\\src\\main\\java\\com\\example\\footballfield",
+    "\\src\\main\\java\\com\\example\\footballfield\\exception",
+    "\\src\\main\\java\\com\\example\\footballfield\\repository",
+    "\\src\\main\\resources"
+  ],
+  "SelectedNode": "\\src\\main\\java\\com\\example\\footballfield\\exception\\GeneralExceptionAdvisor.java",
+  "PreviewInSolutionExplorer": false
+}

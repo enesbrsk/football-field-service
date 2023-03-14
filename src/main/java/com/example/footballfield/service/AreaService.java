@@ -61,7 +61,6 @@ public class AreaService {
             throw new GenericException("Id is not null ", HttpStatus.BAD_REQUEST);
         }
         areaRepository.deleteById(id);
-
         return new ResponseMessage();
     }
 

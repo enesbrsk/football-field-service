@@ -22,7 +22,7 @@ data class User @JvmOverloads constructor(
     val username: String? = null,
     val password: String? = null,
     @Enumerated(EnumType.STRING)
-    val role: Role? = null
+    val role: Role? = null,
 
 ){
 
